@@ -48,70 +48,47 @@ public class Account {
         }
     }
 
-
-
-
 //Add
     public void addAccount() throws Exception {
-        System.out.println();
-        System.out.println(name + " is not a recognized account...");
-        System.out.println("Would you like to add this account? [y/n]");
-        System.out.println();
+        System.out.println("\n" + name + " is not a recognized account...\nWould you like to add this account? [y/n]\n");
         String answer = ATM.scanner.nextLine();
         if(answer.equalsIgnoreCase("y")) {
-            System.out.println();
-            System.out.println("Account added for " + name);
-            System.out.println();
+            System.out.println("Account added for " + name + "\n");
             chooseService();
         } else if (answer.equalsIgnoreCase("n")) {
-            System.out.println("Transaction Canceled");
-            System.out.println();
+            System.out.println("Transaction Canceled\n");
             chooseName();
         }
     }
 
 //Remove
     public void removeAccount() throws Exception {
-        System.out.println();
-        System.out.println("Would you like to remove this account? [y/n]");
-        System.out.println();
+        System.out.println("\nWould you like to remove this account? [y/n]\n");
         String answer = ATM.scanner.nextLine();
         if(answer.equalsIgnoreCase("y")) {
             balance = account.remove(name);
-            System.out.println("Account removed for " + name);
-            System.out.println();
+            System.out.println("Account removed for " + name + "\n");
             chooseName();
         } else if (answer.equalsIgnoreCase("n")) {
-            System.out.println("Transaction Canceled");
+            System.out.println("Transaction Canceled\n");
             chooseName();
         }
     }
 
-
 //Menu
     public void chooseService() throws Exception {
         System.out.println("Please select a transaction " + name);
-        System.out.println();
-        System.out.println("1 > Account Balance");
-        System.out.println("2 > Withdrawal");
-        System.out.println("3 > Remove Account");
-        System.out.println("4 > Cancel Transaction");
-        System.out.println();
+        System.out.println("\n1 > Account Balance\n2 > Withdrawal\n3 > Remove Account\n4 > Cancel Transaction\n");
         service = ATM.scanner.nextLine();
         if (service.equalsIgnoreCase("1")) {
-            System.out.println("1 > Account Balance: $ " + balance);
-            System.out.println();
+            System.out.println("\n1 > Account Balance: $ " + balance + "\n");
         } else if (service.equalsIgnoreCase("2")) {
-            System.out.println();
-            System.out.println("2 > Withdrawal:");
+            System.out.println("\n2 > Withdrawal:\nHow much would you like to withdrawal?\n");
             chooseAccountWithdrawal();
         } else if (service.equalsIgnoreCase("3")) {
             removeAccount();
         } else if (service.equalsIgnoreCase("4")) {
-            System.out.println("4 > Transaction Canceled");
-            System.out.println();
-            System.out.println("Thank you for choosing City Bank, and until next time!");
-            System.out.println();
+            System.out.println("4 > Transaction Canceled\n\nThank you for choosing City Bank, and until next time!\n");
             chooseName();
         } else {
             System.out.println("Invalid Selection");
@@ -119,24 +96,14 @@ public class Account {
         }
     }
 
-
-
 //2 > Withdrawal
-
     public void chooseAccountWithdrawal() throws Exception {
-        System.out.println("How much would you like to withdrawal?");
-        System.out.println("");
         Double withdrawalAmount = Double.parseDouble(ATM.scanner.nextLine());
         if (balance >= withdrawalAmount) {
-            System.out.println();
-            System.out.println("Remaining Account Balance : $" + (balance-withdrawalAmount));
-            System.out.println();
-            System.out.println("Please collect your funds.");
-            System.out.println("Thank you for choosing City Bank!");
-            System.out.println();
+            System.out.println("\nRemaining Account Balance : $" + (balance-withdrawalAmount) + "\nPlease collect your funds.\n\nThank you for choosing City Bank!\n");
+            chooseService();
         } else {
-            System.out.println("**INSUFFICIENT FUNDS**");
-            System.out.println("");
+            System.out.println("**INSUFFICIENT FUNDS**\n");
             chooseAccountWithdrawal();
         }
     }
